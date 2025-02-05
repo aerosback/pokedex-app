@@ -21,6 +21,10 @@ In addition to this, a **manage.py** file for common database migration commands
 SQlite was the database technology employed. Instead of using raw SQL queries, SQLAlchemy was used here as an ORM database model.
 Nginx served here as a reverse web proxy which is linked with the uwsgi process running flask application.
 
+## Requirements:
+- Docker Engine: [Here](https://docs.docker.com/engine/install/) you will find how to install it according to your Operating System.
+- Docker Compose v2. [Here](https://docs.docker.com/compose/install/) you will find how to install it according to your Operating System.
+
 ## How to use:    
 - Clone this  [repository](https://github.com/aerosback/pokedex-app)  
 - Run the following to build docker containers (if they do not exist) and then execute them (as a dettached process, to not watch containers' output):<br />
@@ -40,7 +44,7 @@ Nginx served here as a reverse web proxy which is linked with the uwsgi process 
 ## Available Key Views or Operations:
 
 - **/index**: Home landing page.
-- **/add_pokemon**: on this page we can add a new pokemon entry. Besides, we can search remotely on the PokeAPI service.
+- **/add_pokemon**: on this page we can add a new pokemon entry. Besides, here we can search remotely on the PokeAPI service by typing the name of the pokemon we are about to search and then clicking the button "remote search".
 - **/list**: A listing page which displays all available pokemon entries in our database.
 - **/detail**: A page where all features of a pokemon as well as its picture are displayed.
 - **/edit_pokemon**: A page where a pokemon's features can be edited and persisted into our database.

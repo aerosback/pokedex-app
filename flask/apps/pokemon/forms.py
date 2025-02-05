@@ -10,10 +10,10 @@ class AddPokemonForm(FlaskForm):
     name = StringField(label="Name", validators=[DataRequired(), Length(min=2, max=20)])
     image_link = StringField(label="Image Link")
     description = StringField(label="Description")
-    height = StringField(label="Height", validators=[Length(max=20)])
-    weight = StringField(label="Weight", validators=[Length(max=20)])
+    height = StringField(label="Height (ft.)", validators=[Length(max=20)])
+    weight = StringField(label="Weight (lbs.)", validators=[Length(max=20)])
     category = StringField(label="Category", validators=[Length(max=20)])
-    ability = StringField(label="Ability", validators=[Length(max=20)])
+    ability = StringField(label="Abilities", validators=[Length(max=20)])
 
     def validate_name(form, field):
         if exists_pokemon_with_name(field.data):
@@ -30,10 +30,10 @@ class EditPokemonForm(FlaskForm):
     name = StringField(label="Name", validators=[DataRequired(), Length(min=2, max=20)])
     image_link = StringField(label="Image Link")
     description = StringField(label="Description")
-    height = StringField(label="Height", validators=[Length(max=20)])
-    weight = StringField(label="Weight", validators=[Length(max=20)])
+    height = StringField(label="Height (ft.)", validators=[Length(max=20)])
+    weight = StringField(label="Weight (lbs.)", validators=[Length(max=20)])
     category = StringField(label="Category", validators=[Length(max=20)])
-    ability = StringField(label="Ability", validators=[Length(max=20)])
+    ability = StringField(label="Abilities", validators=[Length(max=20)])
 
     def __init__(self, pokemon_pk, formdata=..., **kwargs):
         self.pokemon_pk = pokemon_pk

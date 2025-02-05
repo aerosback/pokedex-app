@@ -75,7 +75,7 @@ class PokemonDtoConverter:
             pokemon_id=pokemon_id,
             name=pokemon_name,
             description='',
-            image_link=response["sprites"]["front_default"],
+            image_link=response["sprites"]["other"]["home"]["front_default"],
             height=str(response["height"]),
             weight=str(response["weight"]),
             category='',

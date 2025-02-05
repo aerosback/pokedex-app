@@ -23,13 +23,13 @@ Nginx served here as a reverse web proxy which is linked with the uwsgi process 
 
 ## How to use:    
 - Clone this  [repository](https://github.com/aerosback/pokedex-app)  
-- Run the following to build docker containers (if they do not exist) and then execute them (as a dettached process, to not watch containers' output): 
+- Run the following to build docker containers (if they do not exist) and then execute them (as a dettached process, to not watch containers' output):<br />
     `docker compose up -d` 
-- Or if you want to run this watching the output of the current underlying process:
+- Or if you want to run this watching the output of the current underlying process:<br />
     `docker compose up` 
-- To stop running containers do the following:   
+- To stop running containers do the following:<br />
     `docker compose down`
-- To build or rebuild containers do the following:   
+- To build or rebuild containers do the following:<br /> 
     `docker compose build`
 
 ## How to access via browser the web app locally: 

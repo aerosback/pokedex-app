@@ -1,10 +1,10 @@
 # Pokedex-App 
 This project intends to provide with a Pokedex-like UI and its relevant CRUD operations.
-On top of that, [pokeapi](https://pokeapi.co/) can be used here to feed the creation of new entries.
+On top of that, [pokeapi](https://pokeapi.co/) was used here to feed the creation of new entries.
 
 The project was designed having in mind a Domain Driven Design (DDD) focus and thus structured as follows.
 Inside a path of folders **flask/apps/pokemon/**, there are the following files:
-- **dtos/types.py**: contains data classes also known as data transfer classes, which allow us to separate concern between models and CRUD business logic operations.
+- **dtos/types.py**: contains data classes also known as data transfer classes, which allow us to separate concerns between models and CRUD business logic operations.
 - **dtos/utils.py**: contains useful function for the above dataclasses.
 - **constants.py**: contains constant read only values such as enumations or scalar values.
 - **exceptions.py**: contains custom exceptions.

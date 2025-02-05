@@ -1,0 +1,182 @@
+<!-- Macro to remove code duplication -->
+
+<!-- Macro to build form fields -->
+{% macro make_field(field, value, id) %}
+    <div class="form-group row">
+        {{ field.label(class="col-sm-2 col-form-label")}}
+        <div class="col-sm-10">
+            {{ field( value= value, class="form-control" , id=id)}}
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro make_field_with_button(field, value, id) %}
+    <div class="form-group row">
+        {{ field.label(class="col-sm-2 col-form-label")}}
+        <div class="col-sm-8">
+            {{ field( value= value, class="form-control" , id=id)}}
+        </div>
+        <div class="col-sm-2">
+            <button class="btn btn-outline-success my-1 my-sm-0 mr-sm-0" id="btn-search-pokemon" type="button" onclick="fetch_pokemon()"> Remote Search</button>
+        </div>
+    </div>
+{% endmacro %}
+
+<script>
+
+    function set_inputs(json_result){
+        const entry = json_result.entries[0];
+        const abilities = entry.abilities;
+        const category = entry.category;
+        const description = entry.description;
+        const height = entry.height;
+        const image_link = entry.image_link;
+        const name = entry.name;
+        const pokemon_id = entry.pokemon_id;
+        const weight = entry.weight;
+        const types = entry.types;
+        const weaknesses = entry.weaknesses;
+
+        document.querySelector('#pokemon_id').value = pokemon_id;
+        document.querySelector('#name').value = name;
+        document.querySelector('#image_link').value = image_link;
+        document.querySelector('#description').value = description;
+        document.querySelector('#height').value = height;
+        document.querySelector('#weight').value = weight;
+        document.querySelector('#category').value = category;
+        document.querySelector('#ability').value = abilities;
+
+        types.forEach(type_entry => {
+            $(`#t_${type_entry}`).prop('checked', true).change();
+        });
+
+        weaknesses.forEach(weakness_entry => {
+            $(`#w_${weakness_entry}`).prop('checked', true).change();
+        });
+
+    }
+
+    async function get_data(pokemon_name) {
+        const domain = location.protocol + '//' + location.host;
+        const url = `${domain}/remote_search?name=${pokemon_name}`;
+        try {
+            const response = await fetch(url);
+            if (!response.ok) {
+                alert(`Error Response status: ${response.status}`);
+                return;
+            }
+            const json = await response.json();
+            if (!json.ok){
+                alert(`${json.error_msg}`);
+                return;
+            }
+            set_inputs(json);
+        } catch (error) {
+            alert(error.message);
+        }
+    }
+
+    async function fetch_pokemon(){
+        const input_txt = document.querySelector('#name');
+        const pokemon_name = input_txt.value;
+        await get_data(pokemon_name);
+
+    }
+</script>
+
+
+<!-- CSRF Token -->
+{{ form.csrf_token }}
+<!-- Pokemon ID  -->
+{{ make_field(field=form.pokemon_id, value=pokemon_id, id="pokemon_id")}}
+
+
+<!-- Pokemon Name  -->
+{%   if is_edit_form %}
+
+{{ make_field(field=form.name, value=name, id="name")}}
+
+
+{% else %}
+
+{{ make_field_with_button(field=form.name, value=name, id="name")}}
+
+{% endif %}
+
+
+<!-- Pokemon Image Link  -->
+{{ make_field(field=form.image_link, value=image_link, id="image_link")}}
+
+<!-- If the form template is loaded by edit view then show image-->
+{%   if pk_type_flag and pk_weakness_flag %}
+<div class="form-group row">
+    <label for="image_link" class="col-sm-2 col-form-label">Image</label>
+    <div class="col-sm-10">
+        <img style="border-style: hidden;height: 140px;" src="{{ image_link }}">
+    </div>
+</div>
+{% endif %}
+
+<!-- Pokemon Description  -->
+{{ make_field(field=form.description, value=description, id="description") }}
+<!-- Pokemon Height -->
+{{ make_field(field=form.height, value=height, id="height") }}
+<!-- Pokemon Weight -->
+{{ make_field(field=form.weight, value=weight, id="weight") }}
+<!-- Pokemon Category -->
+{{ make_field(field=form.category, value=category, id="category") }}
+<!-- Pokemon Ability -->
+{{ make_field(field=form.ability, value=abilities, id="ability") }}
+
+
+<div class="form-group row">
+    <label class="col-sm-2 col-form-label">Type</label>
+    <div class="col-sm-10">
+        {% for pokemon_type in pokemon_types %}
+            {% if pk_type_flag and pk_type_flag[loop.index - 1] %}
+                <input name="t_{{ pokemon_type }}" id="t_{{ pokemon_type }}" checked type="checkbox" data-toggle="toggle"
+                       data-on="{{ pokemon_type|title() }}" data-off="{{ pokemon_type|title() }}"
+                       data-onstyle="warning"
+                       data-offstyle="secondary">
+            {% else %}
+                <input name="t_{{ pokemon_type }}" id="t_{{ pokemon_type }}" type="checkbox" data-toggle="toggle"
+                       data-on="{{ pokemon_type|title() }}" data-off="{{ pokemon_type|title() }}"
+                       data-onstyle="warning"
+                       data-offstyle="secondary">
+            {% endif %}
+            {% if loop.index % 6 == 0 %}
+                <hr>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+<hr>
+<div class="form-group row">
+    <label class="col-sm-2 col-form-label">Weakness</label>
+    <div class="col-sm-10">
+        {% for pokemon_type in pokemon_types %}
+            {% if pk_weakness_flag and pk_weakness_flag[loop.index - 1] %}
+                <input name="w_{{ pokemon_type }}" id="w_{{ pokemon_type }}" checked type="checkbox" data-toggle="toggle"
+                       data-on="{{ pokemon_type|title() }}" data-off="{{ pokemon_type|title() }}"
+                       data-onstyle="warning"
+                       data-offstyle="secondary">
+            {% else %}
+                <input name="w_{{ pokemon_type }}" id="w_{{ pokemon_type }}" type="checkbox" data-toggle="toggle"
+                       data-on="{{ pokemon_type|title() }}" data-off="{{ pokemon_type|title() }}"
+                       data-onstyle="warning"
+                       data-offstyle="secondary">
+            {% endif %}
+            {% if loop.index % 6 == 0 %}
+                <hr>
+            {% endif %}
+        {% endfor %}
+
+
+    </div>
+</div>
+
+<div class="form-group row">
+    <div class="col-sm-10">
+        <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+    </div>
+</div>

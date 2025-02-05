@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    .table-container {
+        width: 120%;
+        height: 800px;
+        overflow: auto;
+    }
+
+    th {
+        background-color: #4CAF50;
+        color: white;
+    }
+</style>
+
+<div class="container">
+    <div class="table-container">
+        <h1 class="title">Pokemons</h1>
+        <table id="pokemon_table" class="table hover cell-border" style="width:100%">
+            <thead>
+            <tr>
+                <th scope="col">Pokedox #</th>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Image</th>
+                <th scope="col">Category</th>
+                <th scope="col">Height</th>
+                <th scope="col">Weight</th>
+                <th>Type</th>
+                <th>Weakness</th>
+                <th>Operations</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!--Append Each rows-->
+            {% for pokemon in pokemon_entries%}
+            <tr class="table-active">
+                <td>{{pokemon.pokemon_id}}</td>
+                <td>{{pokemon.name.title()}}</td>
+                <td>{{pokemon.description}}</td>
+                <td>
+                    <img style="border-style: hidden;height: 140px;" src="{{pokemon.image_link}}">
+                </td>
+                <td> {{pokemon.category.title()}}</td>
+                <td> {{pokemon.height}}</td>
+                <td> {{pokemon.weight}}</td>
+                <td>
+                    <ul>
+                        {% for pokemon_type in pokemon.types%}
+                        <li>{{pokemon_type.title()}}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        {% for weakness in pokemon.weaknesses%}
+                        <li>{{weakness.title()}}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+                <td>
+                    <div class="btn-group">
+                        <a href="{{url_for('detail_view',q=pokemon.pokemon_id)}}" class="btn btn-primary btn-md active  mr-1" role="button" aria-pressed="true">View</a>
+
+                    <a href="{{url_for('edit_pokemon',q=pokemon.pokemon_id|string)}}" class="btn btn-primary btn-md active  mr-1" role="button" aria-pressed="true">Edit</a>
+                    <a href="{{url_for('delete_pokemon',q=pokemon.pokemon_id|string)}}" class="btn btn-primary btn-md active  mr-1" onclick="return confirm('Are you sure you want to delete {{ pokemon.name|title()}} from the database?')" role="button" aria-pressed="true">Delete</a>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+{% endblock %}

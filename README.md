@@ -17,18 +17,20 @@ Inside a path of folders **flask/apps/pokemon/**, there are the following files:
 - **./templates/**: contains Jinja html templates
 
 
-In addition to this, I've implemented **manage.py** file for common database migration commands and running server commands.
-For database, I have used SQlite. Instead of using raw SQL queries I have chosen to use SQLAlchemy to understand ORM database model.
-
+In addition to this, a **manage.py** file for common database migration commands and running server commands was implemented.
+SQlite was the database technology employed. Instead of using raw SQL queries, SQLAlchemy was used here as an ORM database model.
+Nginx served here as a reverse web proxy which is linked with the uwsgi process running flask application.
 
 ## How to use:    
 - Clone this  [repository](https://github.com/aerosback/pokedex-app)  
-- Run the following to build docker containers (if they do not exist) and then run them. Do as follows to run them as a dettached process: 
+- Run the following to build docker containers (if they do not exist) and then execute them (as a dettached process, to not watch containers' output): 
     `docker compose up -d` 
 - Or if you want to run this watching the output of the current underlying process:
     `docker compose up` 
-- to stop running containers do the following:   
+- To stop running containers do the following:   
     `docker compose down`
+- To build or rebuild containers do the following:   
+    `docker compose build`
 
 ## How to access via browser the web app locally: 
 

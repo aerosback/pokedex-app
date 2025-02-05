@@ -5,7 +5,7 @@ services:
     container_name: flask
     restart: always
     environment:
-      - APP_NAME=MyFlaskApp
+      - APP_NAME=PokedexWebApp
     expose:
       - 8080
   nginx:

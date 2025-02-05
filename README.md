@@ -14,16 +14,16 @@ For database, I have used SQlite. Instead of using raw SQL queries I have chosen
 ## How to use:    
 - Clone this  [repository](https://github.com/aerosback/pokedex-app)  
 - Run the following to build docker containers (if they do not exist) and then run them. Do as follows to run them as a dettached process: 
-`docker compose up -d ` 
+    `docker compose up -d` 
 - Or if you want to run this watching the output of the current underlying process:
-`docker compose up` 
+    `docker compose up` 
 - to stop running containers do the following:   
-`docker compose down`
+    `docker compose down`
 
 ## How to access via browser the web app locally: 
 
 - Open your browser and type:   
-`http://localhost:8003/`
+    `http://localhost:8003/`
 
 ## Database Schema
 ![enter image description here](https://github.com/aerosback/pokedex-app/tree/main/flask/assets/database_schema.png)

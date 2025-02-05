@@ -37,10 +37,10 @@ Nginx served here as a reverse web proxy which is linked with the uwsgi process 
 - Open your browser and type:   
     `http://localhost:8003/`
 
-## Available Key Views or Operations
+## Available Key Views or Operations:
 
 - **/index**: Home landing page.
-- **/add_pokemon**: on this page we can add a new pokemon entry. Besides, we can search on remotely on the PokeAPI.
+- **/add_pokemon**: on this page we can add a new pokemon entry. Besides, we can search remotely on the PokeAPI service.
 - **/list**: A listing page which displays all available pokemon entries in our database.
 - **/detail**: A page where all features of a pokemon as well as its picture are displayed.
 - **/edit_pokemon**: A page where a pokemon's features can be edited and persisted into our database.

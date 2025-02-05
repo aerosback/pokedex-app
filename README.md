@@ -1,6 +1,6 @@
 # Pokedex-App 
 This project intends to provide with a Pokedex-like UI and its relevant CRUD operations.
-On top of that, [pokeapi](https://pokeapi.co/) was used here to feed the creation of new entries.
+On top of that, [PokeAPI](https://pokeapi.co/) was used here to feed the creation of new entries.
 
 The project was designed having in mind a Domain Driven Design (DDD) focus and thus structured as follows.
 Inside a path of folders **flask/apps/pokemon/**, there are the following files:
@@ -36,6 +36,15 @@ Nginx served here as a reverse web proxy which is linked with the uwsgi process 
 
 - Open your browser and type:   
     `http://localhost:8003/`
+
+## Available Key Views or Operations
+
+- **/index**: Home landing page.
+- **/add_pokemon**: on this page we can add a new pokemon entry. Besides, we can search on remotely on the PokeAPI.
+- **/list**: A listing page which displays all available pokemon entries in our database.
+- **/detail**: A page where all features of a pokemon as well as its picture are displayed.
+- **/edit_pokemon**: A page where a pokemon's features can be edited and persisted into our database.
+- **/delete_pokemon**: Not a page but an operation which can be performed when one is at the List View. It allow us to delete a single pokemon entry from our database.
 
 ## Database Schema
 ![enter image description here](https://github.com/aerosback/pokedex-app/blob/943e7f28a5c955e221f021e400332fe99e1f178c/flask/assets/database_schema.png)

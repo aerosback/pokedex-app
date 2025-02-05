@@ -1,5 +1,6 @@
 # Pokedex-App 
-This project intends to provide with a Pokedex-like UI and its relevant CRUD operations. On top of that, [pokeapi](https://pokeapi.co/) can be used here to feed the creation of new entries.
+This project intends to provide with a Pokedex-like UI and its relevant CRUD operations.
+On top of that, [pokeapi](https://pokeapi.co/) can be used here to feed the creation of new entries.
 
 The project was designed having in mind a Domain Driven Design (DDD) focus and thus structured as follows.
 Inside a path of folders **flask/apps/pokemon/**, there are the following files:
@@ -35,5 +36,5 @@ For database, I have used SQlite. Instead of using raw SQL queries I have chosen
     `http://localhost:8003/`
 
 ## Database Schema
-![enter image description here](https://github.com/aerosback/pokedex-app/blob/master/flask/assets/database_schema.png)
+![enter image description here](https://github.com/aerosback/pokedex-app/blob/943e7f28a5c955e221f021e400332fe99e1f178c/flask/assets/database_schema.png)
 

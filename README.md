@@ -1,11 +1,20 @@
 # Pokedex-App 
 This project intends to provide with a Pokedex-like UI and its relevant CRUD operations. On top of that, [pokeapi](https://pokeapi.co/) can be used here to feed the creation of new entries.
 
-The project was structured as follows, inside a path of folders **flask/apps/pokemon/**, there are the following files and folders:
-- **models.py**: contains ORM for database schema
+The project was designed having in mind a Domain Driven Design (DDD) focus and thus structured as follows.
+Inside a path of folders **flask/apps/pokemon/**, there are the following files:
+- **dtos/types.py**: contains data classes also known as data transfer classes, which allow us to separate concern between models and CRUD business logic operations.
+- **dtos/utils.py**: contains useful function for the above dataclasses.
+- **constants.py**: contains constant read only values such as enumations or scalar values.
+- **exceptions.py**: contains custom exceptions.
+- **forms.py**: contains flask_wtf forms.
+- **models.py**: contains ORM for database schema.
+- **queries.py**: contains read only database-related retrieval functions.
+- **services.py**: contains read-and-write database-related functions.
 - **views.py:** contains application logic i.e the response the apps returns
+- **utils.py**: contains miscellaneous useful functions.
 - **./templates/**: contains Jinja html templates
-- **forms.py**: contains flask_wtf forms
+
 
 In addition to this, I've implemented **manage.py** file for common database migration commands and running server commands.
 For database, I have used SQlite. Instead of using raw SQL queries I have chosen to use SQLAlchemy to understand ORM database model.
@@ -26,5 +35,5 @@ For database, I have used SQlite. Instead of using raw SQL queries I have chosen
     `http://localhost:8003/`
 
 ## Database Schema
-![enter image description here](https://github.com/aerosback/pokedex-app/tree/main/flask/assets/database_schema.png)
+![enter image description here](https://github.com/aerosback/pokedex-app/blob/master/flask/assets/database_schema.png)
 

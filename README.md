@@ -9,7 +9,8 @@ Inside a path of folders **flask/apps/pokemon/**, there are the following files:
 - **constants.py**: contains constant read only values such as enumations or scalar values.
 - **exceptions.py**: contains custom exceptions.
 - **forms.py**: contains flask_wtf forms.
-- **models.py**: contains ORM for database schema.
+- **models.py**: contains ORM model classes for database schema.
+- **apis.py**: contains api calls to external services.
 - **queries.py**: contains read only database-related retrieval functions.
 - **services.py**: contains read-and-write database-related functions.
 - **views.py:** contains application logic i.e the response the apps returns

@@ -1,4 +1,3 @@
-import copy
 from typing import Optional
 from apps.pokemon.dtos.types import PokemonDto
 from apps.pokemon.dtos.utils import PokemonDtoConverter

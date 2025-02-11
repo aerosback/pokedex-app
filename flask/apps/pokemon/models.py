@@ -11,7 +11,7 @@ class Pokemon(db.Model):
     height = db.Column(db.String(20))
     category = db.Column(db.String(20))
     weight = db.Column(db.String(20))
-    abilities = db.Column(db.String(20))
+    abilities = db.Column(db.Text)
     date_added = db.Column(db.DateTime, default=datetime.now)
 
     types = db.relationship('Type', backref='pokemon', lazy='dynamic')

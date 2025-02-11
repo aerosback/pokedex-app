@@ -17,9 +17,10 @@ from apps.pokemon.queries import (
     get_pokemon_by_id,
 )
 from apps.pokemon.services import save_pokemon, delete_pokemon as delete_pokemon_service
+from apps.pokemon.apis import get_pokeapi_pokemon
 
-import requests
 import logging
+
 
 logging.basicConfig()
 logger = logging.getLogger(__name__)
@@ -70,28 +71,18 @@ def remote_search():
         'error_msg': 'not found name parameter',
         'entries': []
     }
-
     if pokemon_name:
-        
-        json_response = None
-        pokemon_name = pokemon_name.lower()
-        url = f"http://pokeapi.co/api/v2/pokemon/{pokemon_name}/"
         try:
-            response = requests.request("GET", url)
-            json_response = response.json()
+            dto_object = get_pokeapi_pokemon(pokemon_name)
         except Exception as error:
             logger.error(f"error: {error}")
-
-        dto_object = None
-        if json_response:
-            dto_object = PokemonDtoConverter.json_response_to_dto(json_response)
         
         if dto_object:
             result['ok'] = True
             result['error_msg'] = ''
             result['entries'] = [ dto_object ]
         else:
-            result['error_msg'] = f'[pokemon not found] error parsing json for pokemon: {pokemon_name}'
+            result['error_msg'] = f'[pokemon not retrieved] error for pokemon: {pokemon_name} -> {error}'
 
     return jsonify(result)
 
